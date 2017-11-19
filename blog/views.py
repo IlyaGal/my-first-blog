@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    for post in posts:
+        post.text=post.text[:200]+"..."
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
