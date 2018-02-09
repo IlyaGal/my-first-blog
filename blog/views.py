@@ -6,7 +6,8 @@ from django.shortcuts import redirect
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte='published_date')
     for post in posts:
         words = post.text.split()
         if len(words) > 50:
