@@ -120,3 +120,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#MEDIA_URL = '/static/media/'
+#STATIC_ROOT = 'D:/OpenServer/domains/mysite/static/'
+#MEDIA_ROOT = 'D:/OpenServer/domains/mysite/static/media/'
+
+#MEDIA_URL = '/static/media/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')

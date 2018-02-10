@@ -3,6 +3,8 @@ from django.utils import timezone
 
 
 class Post(models.Model):
+    #image = models.ImageField(blank=True, upload_to='images/blog/%Y/%m/%d', help_text='150x150px',
+    #                          verbose_name='Ссылка картинки')
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
@@ -11,9 +13,9 @@ class Post(models.Model):
     published_date = models.DateTimeField(
             blank=True, null=True)
 
-    #def publish(self):
-        #self.published_date = timezone.now()
-        #self.save()
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
-    #def __str__(self):
-        #return self.title
+    def __str__(self):
+        return self.title
