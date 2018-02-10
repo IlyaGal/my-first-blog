@@ -5,6 +5,9 @@ from django.utils import timezone
 class Post(models.Model):
     #image = models.ImageField(blank=True, upload_to='images/blog/%Y/%m/%d', help_text='150x150px',
     #                          verbose_name='Ссылка картинки')
+
+    #text_test = models.TextField()
+
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
