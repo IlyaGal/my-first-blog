@@ -1,18 +1,58 @@
 {% extends 'blog/base.html' %}
 
+
 {% block content %}
-{% for post in posts %}
-<div class="post">
-    <div class="date">
-   <!--     {{ post.published_date }}-->
-        {{ post.published_date }}
-    </div>
-    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-        <!--{% if post.image %}
-        <img src="{{ MEDIA_URL }}{{ post.image.url }}">
-        {% endif %}-->
-    <p><Img src="http://inpsy.naps.gov.ua/images/lenta.1427378777.1.b.jpg" alt="Светлана Юрьевна1"></p>
-    <p>{{ post.text|linebreaksbr }}</p>
-</div>
-{% endfor %}
+    {% for worker in workers %}
+        <table width="100%" cellspacing="0" cellpadding="5">
+            <tr>
+                <td width="400" valign="top">
+                    <h1>
+                        Состав лаборатории
+                    </h1>
+                    <div class="post">
+                        <!--<div class="date">
+                            {{ post.published_date }}
+                        </div>-->
+                        <h1>
+                            <a href="{% url 'post_detail' pk=worker.pk %}">
+                                {{ worker.title }}
+                            </a>
+                        </h1>
+                        {% if worker.avatar %}
+                            <p>
+                                <img src="{{ MEDIA_URL }}{{ worker.avatar.url }}">
+                            </p>
+                        {% endif %}
+                        <p>
+                            {{ worker.info|linebreaksbr }}
+                        </p>
+                    </div>
+                </td>
+                <td valign="top">
+                    Новости
+                </td>
+            </tr>
+        </table>
+    {% endfor %}
 {% endblock %}
+
+<!--
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1>
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    {{ post.title }}
+                </a>
+            </h1>
+            {% if post.image %}
+                <p>
+                    <img src="{{ MEDIA_URL }}{{ post.image.url }}">
+                </p>
+            {% endif %}
+            <p>
+                {{ post.text|linebreaksbr }}
+            </p>
+        </div>
+-->

@@ -114,17 +114,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#MEDIA_URL = '/static/media/'
-#STATIC_ROOT = 'D:/OpenServer/domains/mysite/static/'
-#MEDIA_ROOT = 'D:/OpenServer/domains/mysite/static/media/'
-
-#MEDIA_URL = '/static/media/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
