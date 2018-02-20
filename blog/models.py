@@ -27,7 +27,8 @@ class Publication(models.Model):
     author = models.ForeignKey(
         'auth.User',
         on_delete=models.CASCADE,
-        verbose_name='publications')
+        verbose_name='author',
+        related_name='publications')
     text_file = models.FileField(
         upload_to='publications')
     title = models.CharField(
@@ -47,6 +48,8 @@ class UserProfile(models.Model):
         verbose_name='profile')
     title = models.CharField(
         max_length=200)
+    hierarchy = models.IntegerField(
+        default=1)
     avatar = models.ImageField(
         blank=True,
         upload_to='avatars')
@@ -60,11 +63,12 @@ class UserProfile(models.Model):
         blank=True,
         help_text='Any additional information')
     published_date = models.DateTimeField(
-        blank=True, null=True)
+        blank=True,
+        null=True)
 
     def publish(self):
         self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        return self.title

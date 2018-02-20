@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #ff9400;
+    background-color: #20B2AA;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -42,5 +42,39 @@ h1, h2, h3, h4 {
 }
 
 .post h1 a, .post h1 a:visited {
+    color: #000000;
+}
+
+.table {
+    width: 100%; /* Ширина всей таблицы */
+    cellspacing="0";
+    cellpadding="5";
+}
+
+.columnLeft {
+    vertical-align: top; /* Вертикальное выравнивание в ячейках */
+    width: 300px; /* Ширина левой колонки */
+}
+
+.columnMiddle {
+    width: 50px; /* Ширина левой колонки */
+    vertical-align: top; /* Вертикальное выравнивание в ячейках */
+}
+
+.columnRight {
+    vertical-align: top; /* Вертикальное выравнивание в ячейках */
+    width: 600px; /* Ширина всей таблицы */
+}
+
+.tableTitle {
+    font-family: 'Lobster', Times, serif;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+.FIO {
+    font-family: 'Lobster', Times, serif;
+    font-size: 20pt;
+    text-decoration: none;
     color: #000000;
 }

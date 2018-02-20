@@ -6,7 +6,7 @@ from .models import Post, Publication, UserProfile
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'text')
+        fields = ('published_date', 'title', 'text')
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
