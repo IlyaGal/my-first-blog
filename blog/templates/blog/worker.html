@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h1>
+            {{ worker.title }}
+        </h1>
+        <table>
+            <tr>
+                <td>
+                    {% if worker.avatar %}
+                        <p>
+                            <img src="{{ MEDIA_URL }}{{ worker.avatar.url }}"  width="300">
+                        </p>
+                    {% endif %}
+                </td>
+                <td class="columnMiddle"></td>
+                <td class="columnMiddle"></td>
+                <td class="columnMiddle"></td>
+                <td>
+                    <p>
+                        Посада наукового працiвника: {{ worker.position|linebreaksbr }}
+                    </p>
+                    <p>
+                        <a href="{% url 'publications' worker_id=worker.user.pk %}" class="FIO">
+                                    Основнi працi.
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{% url 'pageWithTests' worker_id=worker.user.pk %}" class="FIO">
+                                    Сторiнка з розроблюваними методиками.
+                        </a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p align="justify">
+            {{ worker.info|linebreaksbr }}
+        </p>
+    </div>
+{% endblock %}

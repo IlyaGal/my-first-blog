@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h1>
+            {{ worker.title }}<br>
+            Тестовые методики:
+        </h1>
+        {% for pageWithTest in pageWithTests %}
+            <p>
+                {{ pageWithTest.title|linebreaksbr }}<br>
+                {{ pageWithTest.text|linebreaksbr }}<br>
+                {{ pageWithTest.text_file|linebreaksbr }}
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

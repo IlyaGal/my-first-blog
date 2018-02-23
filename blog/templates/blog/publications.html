@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h1>
+            {{ worker.title }}<br>
+            Публикации:
+        </h1>
+        {% for publication in publications %}
+            <p>
+                {{ publication.title|linebreaksbr }}<br>
+                {{ publication.text_file|linebreaksbr }}
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

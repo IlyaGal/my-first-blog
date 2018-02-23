@@ -1,0 +1,114 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+        <table>
+            <tr>
+                <td class="columnMiddle"></td>
+                <td class="columnMiddle"></td>
+                <td>
+                    <p>
+                        <a href="http://inpsy.naps.gov.ua/info/117/">
+                            Общая информация про лабораторию
+                        </a><br>
+                        <a href="{% url 'cooperation' %}">
+                            Основные направления деятельности
+                        </a><br>
+                        Совместная работа с отечественными и зарубежными организациями
+                    </p>
+                </td>
+                <td class="columnMiddle"></td>
+                <td>
+                    <p>
+                        Научные отчёты по законченным темам<br>
+                        Основные публикации<br>
+                        Контакты
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <td class="columnMiddle"></td>
+                <td class="columnMiddle"></td>
+                <td class="columnLeft">
+                    <h1 class="tableTitle" align="center">
+                        Состав лаборатории
+                        <br>
+                        <br>
+                    </h1>
+                    {% for worker in workers %}
+                    <div class="post">
+                        <a href="{% url 'worker' pk=worker.pk %}" class="FIO">
+                            {{ worker.title }}
+                        </a>
+                        {% if worker.avatar %}
+                            <p align="center">
+                                <img src="{{ MEDIA_URL }}{{ worker.avatar.url }}" width="220">
+                            </p>
+                        {% endif %}
+                        <p>
+                            {{ worker.position|linebreaksbr }}
+                        </p>
+                        <p align="justify">
+                            {{ worker.info|linebreaksbr }}
+                            <a href="{% url 'worker' pk=worker.pk %}">
+                                ...
+                            </a>
+                        </p>
+                    </div>
+                    {% endfor %}
+                </td>
+                <td class="columnMiddle"></td>
+                <td class="columnRight">
+                    <h1 class="tableTitle" align="center">
+                        Последние новости
+                        <br>
+                        <br>
+                    </h1>
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                {{ post.published_date }}
+                            </div>
+                            <h1>
+                                <a href="{% url 'post_detail' pk=post.pk %}" class="FIO">
+                                    {{ post.title }}
+                                </a>
+                            </h1>
+                            <p align="justify">
+                                {{ post.text|linebreaksbr }}
+                                <a href="{% url 'post_detail' pk=post.pk %}">
+                                    ...
+                                </a>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </td>
+                <td class="columnMiddle"></td>
+                <td class="columnMiddle"></td>
+            </tr>
+        </table>
+{% endblock %}
+
+<!--
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1>
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    {{ post.title }}
+                </a>
+            </h1>
+            {% if post.image %}
+                <p>
+                    <img src="{{ MEDIA_URL }}{{ post.image.url }}">
+                </p>
+            {% endif %}
+            <p>
+                {{ post.text|linebreaksbr }}
+            </p>
+        </div>
+-->
+
