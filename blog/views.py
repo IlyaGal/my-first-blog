@@ -1,12 +1,18 @@
 from django.utils import timezone
-from .models import Post, Publication, UserProfile
+from django.views.generic import TemplateView
+
+from .models import Post, Publication, UserProfile, PageWithTests
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm, PublicationForm, UserProfileForm
+from .forms import PostForm, PublicationForm, UserProfileForm, PageWithTestsForm
 from django.shortcuts import redirect
 
 
+class Cooperation(TemplateView):
+    template_name = 'blog/home_cooperation.html'
+
+
 def home(request):
-    workers = UserProfile.objects.filter()
+    workers = UserProfile.objects.order_by('hierarchy')
     for worker in workers:
         words = worker.info.split()
         if len(words) > 15:
@@ -27,17 +33,32 @@ def publications(request, worker_id):
         words = publication.title.split()
         if len(words) > 50:
             publication.title = " ".join(words[:50]) + " "
-    return render(request, 'blog/publications.html', {'publications': publications})
+    rabotnik = UserProfile.objects.get(user_id=worker_id)
+    return render(request, 'blog/publications.html', {'publications': publications, 'worker': rabotnik})
 
 
 def publication(request, pk):
     publication = get_object_or_404(Publication, pk=pk)
-    return render(request, 'blog/published.html', {'publication': publication})
+    return render(request, 'blog/publication.html', {'publication': publication})
+
+
+def pageWithTests(request, worker_id):
+    print("ya zashol v pageWithTests")
+    print(worker_id)
+    pageWithTests = PageWithTests.objects.filter(author_id=worker_id).order_by('publication_date')
+    print("vnurti pageWithTests labyda: {}".format(pageWithTests))
+    rabotnik = UserProfile.objects.get(user_id=worker_id)
+    return render(request, 'blog/pageWithTests.html', {'pageWithTests': pageWithTests, 'worker': rabotnik})
+
+
+def pageWithTest(request, pk):
+    pageWithTest = get_object_or_404(PageWithTests, pk=pk)
+    return render(request, 'blog/pageWithTest.html', {'pageWithTest': pageWithTest})
 
 
 def worker(request, pk):
     worker = get_object_or_404(UserProfile, pk=pk)
-    return render(request, 'blog/worker.html', 'blog/publications.html', {'worker': worker})
+    return render(request, 'blog/worker.html', {'worker': worker})
 
 
 def post_detail(request, pk):

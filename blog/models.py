@@ -72,3 +72,24 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PageWithTests(models.Model):
+    author = models.ForeignKey(
+        'auth.User',
+        on_delete=models.CASCADE,
+        verbose_name='author',
+        related_name='pageWithTests')
+    text_file = models.FileField(
+        upload_to='pageWithTests')
+    title = models.CharField(
+        max_length=200)
+    text = models.TextField(
+        blank=True,
+        help_text='Any information')
+    publication_date = models.DateTimeField(
+        blank=True,
+        null=True)
+
+    def __str__(self):
+        return self.title
